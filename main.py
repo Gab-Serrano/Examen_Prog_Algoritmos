@@ -12,10 +12,14 @@ while sw == 0:
     option = (input("¿Qué desea realizar? Elija una opción:\n1. Arrendar un casillero.\n2. Ver casilleros disponibles.\n3. Asignar un nombre a un casillero.\n4. Mostrar casilleros con nombre.\n5. Anular casillero arrendado. \n6. Mostrar total a pagar. \n7. Mostrar total de ventas.\n8. Salir.\n"))
     #Opción 1: Arrendar casilleros
     if option == "1":
+        print("Los casilleros disponibles son los siguientes:")
+        fn.dispon()
+        arr_casill=input("¿Qué casillero desea arrendar?")
+        fn.arrendar(arr_casill)
         pass
     #Opción 2: Casilleros disponibles
     elif option == "2":
-        pass
+        fn.casill_actual()
     #Opción 3: Asignar nombre a casillero
     elif option == "3":
         pass
