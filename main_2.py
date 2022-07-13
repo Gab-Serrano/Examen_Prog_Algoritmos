@@ -1,4 +1,4 @@
-import funciones_avion as fun
+import funciones_2 as fun
 import numpy as np
 validacion = True
 menu = True 
