@@ -402,3 +402,11 @@ if str(verif_dv) == dv[0]:
   print(True)
 else:
   print(False)
+
+#----------------------------------------------------------------------------------------
+rut="18612264K"
+length=len(rut)
+dig=rut[:length-1]
+dv=rut[length-1:]
+print(dig)
+print(dv)
