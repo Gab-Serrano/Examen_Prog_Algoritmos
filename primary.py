@@ -352,3 +352,53 @@ while True:
         break
     else:
         print("Opcion incorrecta.")
+        
+ #------------------------------------------------------------------------------
+
+digit=[]
+dv=[]
+factor=2
+suma=0
+rut=input("Ingrese RUT\n")
+#Depuración del rut
+rut=rut.upper()
+rut=rut.replace("-","")
+rut=rut.replace(".","")
+
+#Separación del rut
+sw=len(rut)
+cont=0
+for i in rut:
+  cont+=1
+  if cont <= sw-1:
+    digit.append(int(i))
+  else:
+    dv.append(str(i))
+#Operación
+#1. Se da vuelta el rut
+reves=reversed(digit)
+
+#2. Se multiplica por la serie 2 - 3 - 4 - 5 - 6 - 7 
+#(si llega al 8 se debe reiniciar en 2)
+for i in reves:
+  if factor >7:
+    factor=2
+  producto=i*factor
+  suma+=producto
+  factor+=1
+
+#3. Se obtiene el módulo 11 (el resto de la división por 11).
+mod=suma%11
+
+#4. Debemos restar a 11 el módulo.
+verif_dv=11-mod
+
+#Verificación
+if verif_dv == 11:
+  verif_dv = "0"
+elif verif_dv == 10:
+  verif_dv ="K"
+if str(verif_dv) == dv[0]:
+  print(True)
+else:
+  print(False)
