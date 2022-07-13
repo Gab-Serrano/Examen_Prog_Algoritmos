@@ -109,7 +109,7 @@ def clear():
     os.system('clear')
 
 
-clear()
+#clear()
 
 #Continuar - borrado de consola
 
@@ -272,3 +272,120 @@ def valid_compra(asiento, avion):
     return True
   else:
     return False
+
+
+#-------------------------------------------------------------------------------------------------------------------------------------
+#Main matriz
+casilleros = np.array([["", "", ""],
+                       ["", "", ""],
+                       ["", "", ""]], dtype=object)
+
+clientes=[]
+
+#Funciones casilleros 2
+
+def arrendar(total_dia):
+    print("*  Arrendar Casilleros  *")
+    print(" ----------------------- ")
+    print("   1. Nivel 1: $10.000   ")
+    print("   2. Nivel 2: $5.000    ")
+    print("   3. Nivel 3: $2.000    ")
+    print(" ----------------------- ")
+
+    opcion= int(input("Ingrese el nivel que desea:\n"))
+    fila=opcion-1
+    mostrar_fila(fila)
+    opcion = int(input("Ingrese el número de casillero que desea:\n"))
+    if fila == 0:
+        colum= opcion-101
+        total_dia+=10000
+    elif fila == 1:
+        colum = opcion-104
+        total_dia += 5000
+    else:
+        colum = opcion-107
+        total_dia += 3000
+    nombre= input("Ingrese un nombre para reservar. (Solo se mostrarán 4 carácteres máximo).")
+    clientes.append([nombre, opcion])
+    print(clientes)
+    casilleros[fila, colum] = nombre
+    return total_dia
+
+def mostrar():
+    c = 100
+    for i in casilleros:
+        for j in i:
+            sw = 0
+            c+=1
+            while sw == 0:
+                if j == "":
+                    print("|   ",c,end="   |")
+                elif len(j) <= 3:
+                    espace = 3-len(j)
+                    print("|  "," "*espace,j, end="   |")
+                elif len(j) > 3:
+                    endLoc=j[:4]
+                    print("|  ",endLoc, end="   |")
+                sw += 1    
+        print("")
+
+
+def mostrar_fila(fila):
+    if fila == 0:
+        c = 100
+    elif fila == 1:
+        c = 103
+    else:
+        c = 106
+
+    for i in casilleros[fila]:
+        sw = 0
+        c+=1
+        while sw == 0:
+            if i == "":
+                print("|   ", c, end="   |")
+            elif len(i) <= 3:
+                espace = 3-len(j)
+                print("|  ", " "*espace, j, end="   |")
+            elif len(i) > 3:
+                endLoc = i[:4]
+                print("|  ", endLoc, end="   |")
+            sw += 1
+    print("")
+
+
+def mostrar_ocupados():
+    c = 100
+    for i in casilleros:
+        for j in i:
+            sw = 0
+            c += 1
+            while sw == 0:
+                if j == "":
+                    print("|   ", c, end="   |")
+                else:
+                    print("|     X", end="    |")
+                sw += 1
+        print("")
+
+def lista_reservas():
+    for i in clientes:
+        for j in i:
+            print(j, end=" ")
+        print("")
+    if clientes == None:
+        print("No hay clientes guardados.")
+
+# Programa que define y llena una matriz con nombre del estudiante y 5 notas
+
+columnas = 5
+estudiantes = int(input("ingrese cantidad de estudiantes: "))
+matriz = np.empty(shape=(estudiantes, columnas), dtype=('U', 15))
+
+for i in range(estudiantes):
+  nombre = input("ingrese nombre del estudiante")
+  matriz[i, 0] = nombre
+  for k in range(1, 5):
+    nota = int(input(f"Ingrese nota {k}: "))
+    matriz[i, k] = nota
+print(matriz)
